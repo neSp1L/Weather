@@ -1,10 +1,10 @@
 .weather-container-map {
   text-align: center;
+  width: 600px;
 }
 
 .weather-map-drop {
-  margin: 20px 0;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 2.5rem 2.5rem 0 0;
   background-color: #1b1c48;
 }

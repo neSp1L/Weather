@@ -12,34 +12,46 @@ export default function WeatherApp() {
   }, []);
 
   useEffect(() => {
-    document.title = `Weather | ${weather?.location.country}`;
+    document.title = `Погода | ${weather?.location.country}`;
   }, [weather]);
 
-  async function loadInfo(city = "Ecuador") {
-    try {
-      const data = await fetch(
-        `${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}&q=${city}`
-      );
-      const response = await data.json();
-      setWeather(response);
-    } catch (error) {}
-  }
+    function loadInfo(city = "Киев") {
+        fetch(`${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}&q=${city}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error();
+                }
+            })
+            .then(data => {
+                setWeather(data);
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Город с таким названием не найден. \nНажмите Ок, чтобы установить город Киев по умолчанию');
+                loadInfo('Киев');
+            });
+    }
 
-  function handleChangeCity(city) {
-    setWeather(null);
-    loadInfo(city);
-  }
+
+    function handleChangeCity(city) {
+        setWeather(null);
+        loadInfo(city);
+      }
 
   return (
     <div className="weather-app">
       <WeatherForm onChangeCity={handleChangeCity} />
-      {weather ? (
-        <>
-          <WeatherDetails weather={weather} /> <WeatherMap weather={weather} />
-        </>
-      ) : (
-        <Loading />
-      )}
+        <div className="weather-app-container">
+            {weather ? (
+                <>
+                    <WeatherDetails weather={weather} /> <WeatherMap weather={weather} />
+                </>
+            ) : (
+                <Loading />
+            )}
+        </div>
     </div>
   );
 }

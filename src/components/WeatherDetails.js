@@ -1,19 +1,22 @@
 import "./WeatherDetails.css";
 import moment from "moment";
+import 'moment/locale/ru';
 import { TiLocationOutline } from "react-icons/ti";
+
+moment.locale('ru')
 
 export default function WeatherDetails({ weather }) {
   return (
     <section className="weather-container">
       <div className="container-top">
         <div>
-          <h1 className="weather-title">Today</h1>
+          <h1 className="weather-title">Погода сейчас</h1>
           <p className="paragraph">
-            {moment(weather?.location.localtime).format("h:mm a")}
+            {moment(weather?.location.localtime).format("kk:mm")}
           </p>
         </div>
         <p className="paragraph">
-          {moment(weather?.location.localtime).format("MMM Do YY")}
+          {moment(weather?.location.localtime).format('LL')}
         </p>
       </div>
       <div className="container-mid">
@@ -23,8 +26,8 @@ export default function WeatherDetails({ weather }) {
         <img
           width="220"
           height="220"
-          src={weather?.current.condition.icon}
-          alt={`Icon of ${weather?.location.country}`}
+          src={weather?.current.condition.icon.replaceAll('64','128')}
+          alt={`Иконка ${weather?.location.country}`}
         />
       </div>
       <div className="container-bot">

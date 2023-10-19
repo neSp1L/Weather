@@ -7,18 +7,19 @@
 
 .input {
   background-color: #23224a;
-  border-radius: 8px;
+  border-radius: 8px 0 0 8px;
   padding: 0.8rem;
 }
 
 .weatherSearch {
-  margin: 0 15px;
   border: none;
-  color: #7c7c94;
+  width: 200px;
+  color: white;
 }
 
 .weatherIcon {
   color: #cfcfcf;
+  border-radius: 0 8px 8px 0;
 }
 
 

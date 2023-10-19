@@ -13,7 +13,7 @@ export default function WeatherForm({ onChangeCity }) {
   function onChange(e) {
     const value = e.target.value;
     if (value === " ") {
-      alert("Please select a city");
+      alert("Укажите город");
     } else {
       setCity(value);
     }
@@ -25,7 +25,7 @@ export default function WeatherForm({ onChangeCity }) {
         className="weatherSearch input "
         onChange={onChange}
         type="text"
-        placeholder="type a location"
+        placeholder="Введите название города"
       />
       <HiLocationMarker className="weatherIcon input" />
     </form>
