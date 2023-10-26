@@ -16,7 +16,7 @@ export default function WeatherApp() {
   }, [weather]);
 
     function loadInfo(city = "Киев") {
-        fetch(`${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}&q=${city}`)
+        fetch(`localhost:3000?q=${city}`)
             .then(response => {
                 if (response.ok) {
                     return response.json();
