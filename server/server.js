@@ -16,16 +16,14 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.get('/getWeather', async (req, res) => {
-
-    const { q } = req.query;
+    const { method, q } = req.query;
 
     if (!q) {
-        return res.status(400).json({ error: 'Параметр "q" не указан' });
+        return res.status(400).json({ error: 'Неправильные параметры запроса' });
     }
 
     try {
         const response = await axios.get(`${apiUrl}&key=${apiKey}&q=${q}`);
-        console.log()
         res.json(response.data);
     } catch (error) {
         res.status(500).json({ error: 'Произошла ошибка при запросе к API погоды' });
@@ -35,3 +33,4 @@ app.get('/getWeather', async (req, res) => {
 app.listen(port, () => {
     console.log(`Сервер запущен на порту ${port}`);
 });
+
