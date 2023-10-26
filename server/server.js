@@ -6,6 +6,15 @@ const port = 3001;
 const apiKey = "e3c55ad24d104b8c940215558220406";
 const apiUrl = "http://api.weatherapi.com/v1/current.json?aqi=no";
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    next();
+});
+
+app.use(express.json());
+
 app.get('/getWeather', async (req, res) => {
 
     const { q } = req.query;
