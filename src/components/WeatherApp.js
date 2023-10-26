@@ -16,7 +16,7 @@ export default function WeatherApp() {
   }, [weather]);
 
     function loadInfo(city = "Киев") {
-        fetch(`localhost:3000?q=${city}`)
+        fetch(`http://localhost:3001?q=${city}`)
             .then(response => {
                 if (response.ok) {
                     return response.json();
@@ -30,7 +30,7 @@ export default function WeatherApp() {
             .catch(error => {
                 console.error(error);
                 alert('Город с таким названием не найден. \nНажмите Ок, чтобы установить город Киев по умолчанию');
-                loadInfo('Киев');
+                //loadInfo('Киев');
             });
     }
 
